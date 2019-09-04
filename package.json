@@ -1,0 +1,20 @@
+{
+  "name": "object-database",
+  "version": "1.0.0",
+  "description": "Simple OOP Object Database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fantasyui-com/object-database.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fantasyui-com/object-database/issues"
+  },
+  "homepage": "https://github.com/fantasyui-com/object-database#readme"
+}
