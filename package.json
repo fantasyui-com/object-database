@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/fantasyui-com/object-tree-database/issues"
   },
-  "homepage": "https://github.com/fantasyui-com/object-tree-database#readme"
+  "homepage": "https://github.com/fantasyui-com/object-tree-database#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
