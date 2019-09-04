@@ -1,6 +1,6 @@
 {
   "name": "object-tree-database",
-  "version": "1.3.0",
+  "version": "1.0.0",
   "description": "Simple OOP Object Database",
   "main": "index.js",
   "scripts": {
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fantasyui-com/object-database.git"
+    "url": "git+https://github.com/fantasyui-com/object-tree-database.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fantasyui-com/object-database/issues"
+    "url": "https://github.com/fantasyui-com/object-tree-database/issues"
   },
-  "homepage": "https://github.com/fantasyui-com/object-database#readme"
+  "homepage": "https://github.com/fantasyui-com/object-tree-database#readme"
 }
