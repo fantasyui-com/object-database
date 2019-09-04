@@ -1,5 +1,5 @@
 {
-  "name": "object-database",
+  "name": "object-tree-database",
   "version": "1.2.0",
   "description": "Simple OOP Object Database",
   "main": "index.js",
