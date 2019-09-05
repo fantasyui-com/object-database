@@ -4,7 +4,7 @@ Object Tree Database
 ## External API
 
 At the end of the day, when you are exhausted and your database horks your data,
-for the fifteenth time, you got to ask your self are you a :mouse: or a :man:?
+for the fifteenth time, you got to ask your self are you a :mouse: or a :woman:?
 
 The point of this database is simple files that you can simply manipulate and easily strategize about.
 The primary protection of data, is your responsibility, your backup; but you know what to backup from day one.
