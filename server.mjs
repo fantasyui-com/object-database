@@ -1,13 +1,29 @@
 #!/usr/bin/env -S node --experimental-modules
 
-import ObjectDatabase from './index.mjs';
+import ObjectTree from './index.mjs';
 import express from 'express';
 
-const od = new ObjectDatabase();
+async function main(){
 
-const app = express();
-const port = 3001;
+  const ot = new ObjectTree();
+  await ot.initialize();
 
-app.get('/', (req, res) => res.send('Hello World!'))
+  const app = express();
+  const port = 3001;
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+  app.get('/', async (req, res) => {
+
+    console.log( ot.getRoot() )
+
+    const action = Object.assign({method:'noop'},req.params,req.query);
+    const result = await ot.dispatch(action);
+    res.json(result);
+
+
+  });
+
+  app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+}
+
+main();

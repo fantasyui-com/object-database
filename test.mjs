@@ -1,6 +1,24 @@
 #!/usr/bin/env -S node --experimental-modules
+import axios from 'axios';
 
-import ObjectDatabase from './index.mjs';
+async function main(){
 
-const od = new ObjectDatabase();
-console.log(od);
+  axios.get('http://127.1:3001/', {
+      params: {
+        method:'dump',
+        path:'/',
+      }
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+
+}
+
+main();
