@@ -10,9 +10,11 @@ The point of this database is simple files that you can simply manipulate and ea
 The primary protection of data, is your responsibility, your backup; but you know what to backup from day one.
 The snapshot and the log of few entries that came afterwards.
 
-This is an in-memory database, even though it tail the log, and creates snapshots all over.
+This is an in-memory database, even though it tails the log, and creates snapshots all over.
 The file-system and database is like :dog: and :cat:. They cooperate but they are not in any harmony,
-there are no guarantees that you are safe from data loss. In deed the best way to save data is to ship it to
+there are no guarantees that you are safe from data loss on any database.
+
+Indeed the best way to save data is to ship it to
 multiple remote servers where that data will be kept in memory long enough to be safely stored, even then
 you will have disk failures, memory errors and flipped bits from distant dying suns.
 
