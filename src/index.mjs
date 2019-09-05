@@ -1,44 +1,52 @@
-import Node from 'Node';
-import load from 'load';
-import id from 'id';
-import lookup from 'lookup';
+import fs from 'fs';
+import path from 'path';
+import readline from 'readline';
+
 import repeat from 'lodash/repeat.js';
+
+import tail from 'tail';
+
+import Node from 'Node';
+import id from 'id';
+import load from 'load';
+
+import lookup from 'lookup';
 
 export default class ObjectDatabase {
 
+  #logFile = 'object-tree-database.json';
   #root = null;
 
   constructor(){
-
     this.root = new Node({id:'root', name:'root'});
-
-    this.root.make('etc/hosts')
-    this.root.make('users/meow/desktop')
-    this.root.make('users/alice/desktop')
-
-    const workspace = this.root.make('users/alice/workspace');
-
-    workspace.make('photoshop')
-    workspace.make('gimp/plugins')
-
   }
 
   async initialize(){
-    console.log(await this.dump({path:'/'}));
+
+    this.tail = new tail.Tail(this.#logFile,{fromBeginning:true});
+    this.tail.on('line', line => this.line(line));
+
   }
 
+  // All actions are first saved to the log.
   async dispatch(actionObject){
-
-    console.log(`Dispatch intercepted: ${JSON.stringify(actionObject)}`)
-
-    const {method, ...parameters} = actionObject;
-    if(this[method]){
-      return await this[method](parameters)
-    }
-
+    fs.appendFile(this.#logFile, JSON.stringify(actionObject)+'\n', (error) => {
+      if (error) console.error(error);
+    });
   }
 
+  async line(line){
+    const lineObject = JSON.parse(line);
+    const {type:action, ...parameters} = lineObject;
+    console.log(`this.${action}(${JSON.stringify(parameters)})`)
+    if(this[action]){
+      await this[action](parameters);
+    }
+  }
 
+  async make({path}){
+    this.root.make(path);
+  }
 
   async dump({path}){
     const screen = [];
@@ -59,6 +67,7 @@ export default class ObjectDatabase {
     const start = this.#root.resolve(path);
     if(start) {
       show(start);
+      console.dir(screen)
       return screen;
     }else{
       console.log(`Path does not exist.`)

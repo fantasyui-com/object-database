@@ -1,13 +1,55 @@
 # object-tree-database
 Object Tree Database
 
-## Workflow
+## External API
+
+At the end of the day, when you are exhausted and your database horks your data,
+for the fifteenth time, you got to ask your self are you a :mouse: or a :man:?
+
+Here are four ways to manipulate the data:
+
+### Import ObjectTree Interface
+
+```JavaScript
+
+import ObjectTree from './index.mjs';
+const ot = new ObjectTree();
+await ot.initialize();
+const result = await ot.dispatch({type:'dump', path:'users'});
+
+```
+
+### Connect to Server, through HTTP client
+
+```JavaScript
+import axios from 'axios';
+axios
+.get('http://127.1:3001/', {params:{type:'dump',path:'users'}})
+.then(function(response){console.log(response);})
+```
+
+### Command Line HTTP Client
+```sh
+
+curl '127.1:3001?type=dump&path=users'
+
+```
+
+### Appending to the log file
+
+```sh
+
+    echo '{"type":"dump","path":"users"}' >> object-tree-database.json;
+
+```
+
+## Working with Internal API
 
 First create a stable tree structure.
 
 ```JavaScript
 
-const root = this.#root;
+const root = this.root;
 root.make('etc/hosts')
 root.make('users/meow/desktop')
 root.make('users/alice/desktop')
@@ -60,7 +102,7 @@ to get the data out
 
 ```
 
-## Philosophy
+## Fields
 
 ### id
 

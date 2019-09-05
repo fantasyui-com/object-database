@@ -13,7 +13,7 @@ async function main(){
 
   app.get('/', async (req, res) => {
 
-    console.log( ot.getRoot() )
+    console.log( ot.root )
 
     const action = Object.assign({method:'noop'},req.params,req.query);
     const result = await ot.dispatch(action);

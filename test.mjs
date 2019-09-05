@@ -1,24 +1,10 @@
 #!/usr/bin/env -S node --experimental-modules
-import axios from 'axios';
+import ObjectTree from './index.mjs';
 
 async function main(){
-
-  axios.get('http://127.1:3001/', {
-      params: {
-        method:'dump',
-        path:'/',
-      }
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
-
+  const ot = new ObjectTree();
+  await ot.initialize();
+  const result = await ot.dispatch({type:'dump', path:'/'});
 }
 
 main();
