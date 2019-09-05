@@ -7,22 +7,24 @@ import repeat from 'lodash/repeat.js';
 export default class ObjectDatabase {
 
   #root = null;
+
   constructor(){
 
-    this.#root = new Node({id:'root', name:'root'});
+    this.root = new Node({id:'root', name:'root'});
 
-    const root = this.#root;
-    root.make('etc/hosts')
-    root.make('users/meow/desktop')
-    root.make('users/alice/desktop')
-    const workspace = root.make('users/alice/workspace')
+    this.root.make('etc/hosts')
+    this.root.make('users/meow/desktop')
+    this.root.make('users/alice/desktop')
+
+    const workspace = this.root.make('users/alice/workspace');
+
     workspace.make('photoshop')
     workspace.make('gimp/plugins')
 
   }
 
   async initialize(){
-    console.log(await this.dump({path:'users/alice'}));
+    console.log(await this.dump({path:'/'}));
   }
 
   async dispatch(actionObject){
@@ -64,10 +66,15 @@ export default class ObjectDatabase {
     }
   }
 
+  // API
+
   createPath(pathString){
   }
 
-  getRoot(){
+  set root(node){
+    this.#root = node;
+  }
+  get root(){
     return this.#root;
   }
 
