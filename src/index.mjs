@@ -68,18 +68,11 @@ export default class ObjectDatabase {
 
   // API
 
-  createPath(pathString){
-  }
-
   set root(node){
     this.#root = node;
   }
   get root(){
     return this.#root;
-  }
-
-  getObjectContent(pathString){
-
   }
 
 }
