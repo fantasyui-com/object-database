@@ -6,7 +6,12 @@ Object Tree Database
 ### id
 
 Id should be universally unique across all systems.
-Name is the name of the file, it should be unique in the objects set
+- By default it is a 128 bit random hex.
+
+### name
+
+Name is the name of the "file", it should be unique in the objects set.
+- Server will not allow objects with duplicate names. throw
 
 
 ## Debug
