@@ -39,7 +39,7 @@ curl '127.1:3001?type=dump&path=users'
 
 ```sh
 
-    echo '{"type":"dump","path":"users"}' >> object-tree-database.json;
+echo '{"type":"dump","path":"users"}' >> object-tree-database.json;
 
 ```
 
