@@ -1,6 +1,6 @@
 {
   "name": "object-tree-database",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Simple OOP Object Database",
   "main": "index.mjs",
   "scripts": {
