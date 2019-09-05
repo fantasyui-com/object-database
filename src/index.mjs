@@ -43,10 +43,10 @@ export default class ObjectDatabase {
     const show = function(node, indent = -1){
       indent++;
 
-      const spaceIndent = repeat('  ', indent);
-      const objectName = node.name||node.id;
+      const prefix = repeat('  ', indent);
+      const label = node.name||node.id;
 
-      screen.push(`${spaceIndent}${objectName}`);
+      screen.push({prefix, label, indent});
       if(node.objects) node.objects.forEach(function(child){
         show(child, indent)
       })
@@ -57,10 +57,10 @@ export default class ObjectDatabase {
     const start = this.#root.resolve(path);
     if(start) {
       show(start);
-      return screen.join('\n');
+      return screen;
     }else{
       console.log(`Path does not exist.`)
-      return ''
+      return []
     }
   }
 
