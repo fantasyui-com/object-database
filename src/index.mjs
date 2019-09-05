@@ -17,8 +17,12 @@ export default class ObjectDatabase {
   #logFile = 'object-tree-database.json';
   #root = null;
 
-  constructor(){
+  constructor(options){
+
+    if(options.logFile) this.#logFile = options.logFile;
+
     this.root = new Node({id:'root', name:'root'});
+
   }
 
   async initialize(){

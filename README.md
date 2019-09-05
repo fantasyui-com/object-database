@@ -6,6 +6,64 @@ Object Tree Database
 At the end of the day, when you are exhausted and your database horks your data,
 for the fifteenth time, you got to ask your self are you a :mouse: or a :man:?
 
+The point of this database is simple files that you can simply manipulate and easily strategize about.
+The primary protection of data, is your responsibility, your backup; but you know what to backup from day one.
+The snapshot and the log of few entries that came afterwards.
+
+This is an in-memory database, even though it tail the log, and creates snapshots all over.
+The file-system and database is like :dog: and :cat:. They cooperate but they are not in any harmony,
+there are no guarantees that you are safe from data loss. In deed the best way to save data is to ship it to
+multiple remote servers where that data will be kept in memory long enough to be safely stored, even then
+you will have disk failures, memory errors and flipped bits from distant dying suns.
+
+In context of data safety, index and blob is pure overhead. Here is JSON, something you can understand,
+test, replay, experiment, compare.
+
+The primary method of controlling the database is the log file. Everything in
+the log file is replayed at program start-up. Line by line. Log file path
+can be set via ObjectTree constructor:
+
+```JavaScript
+import ObjectTree from './index.mjs';
+const ot = new ObjectTree({logFile: 'object-tree-database.json'});
+```
+Contents of the log file look as follows:
+
+```JSON
+
+  {"type":"make","path":"etc/hosts"}
+  {"type":"make","path":"users/meow/desktop"}
+  {"type":"make","path":"users/alice/desktop"}
+  {"type":"make","path":"users/alice/workspace/photoshop"}
+  {"type":"make","path":"users/alice/workspace/gimp/plugins"}
+  {"type":"dump","path":"users"}
+
+```
+
+You are encouraged to save and load snapshots, when the log file becomes too large:
+
+```sh
+
+  echo '{"type":"snapshot", "file":"object-tree-snapshot-346.json"}' >> object-tree-database.json;
+
+```
+
+now you can replace the entire contents of object-tree-database.json with a single line
+
+```sh
+# note that we are using > and not >>
+echo '{"type":"restore", "file":"object-tree-snapshot-346.json"}' > object-tree-database.json;
+
+```
+
+resulting in
+
+```JSON
+
+  {"type":"restore", "file":"object-tree-snapshot-346.json"}
+
+```
+
 Here are four ways to manipulate the data:
 
 ### Import ObjectTree Interface
@@ -49,7 +107,11 @@ First create a stable tree structure.
 
 ```JavaScript
 
-const root = this.root;
+import ObjectTree from './index.mjs';
+const ot = new ObjectTree();
+await ot.initialize();
+
+const root = ot.root;
 root.make('etc/hosts')
 root.make('users/meow/desktop')
 root.make('users/alice/desktop')
