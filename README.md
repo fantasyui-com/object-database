@@ -189,5 +189,5 @@ dump database
 
 ## Todo
 
-content function
-snapshot/restore methods
+- content function
+- snapshot/restore methods
