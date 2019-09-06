@@ -14,25 +14,36 @@ import lookup from 'lookup';
 
 export default class ObjectDatabase {
 
-  #logFile = 'object-tree-database.json';
+  #logFile = null;
+  #logStrategy = 'readline';
   #root = null;
 
   constructor(options){
-
-    if(options.logFile) this.#logFile = options.logFile;
-
+    const defaults = { logFile:'object-tree-database.json', logStrategy:'readline' };
+    const setup = Object.assign({},options,defaults)
+    this.#logFile = setup.logFile;
+    this.#logStrategy = setup.logStrategy;
     this.root = new Node({id:'root', name:'root'});
 
   }
 
   async initialize(){
+    console.log('this.#logFile',this.#logFile)
 
-    if(this.tailLog)
-    this.tail = new tail.Tail(this.#logFile,{fromBeginning:true});
-    this.tail.on('line', line => this.line(line));
-    }else{
-    // todo use es here
+    if(this.logStrategy == 'tail'){
+      this.tail = new tail.Tail(this.#logFile,{fromBeginning:true});
+      this.tail.on('line', line => this.line(line));
+    } else if(this.logStrategy == 'readline'){
+      // readline does not activley tail...
+      const rl = readline.createInterface({
+        input: fs.createReadStream(this.#logFile),
+        crlfDelay: Infinity
+      });
+      rl.on('line', line => this.line(line));
+      setInterval(function(){rl.input.read(0)},1000)
     }
+
+
   }
 
   // All actions are first saved to the log.

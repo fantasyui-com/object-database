@@ -5,7 +5,7 @@ import express from 'express';
 
 async function main(){
 
-  const ot = new ObjectTree();
+  const ot = new ObjectTree({logFile:'object-tree-database.json'});
   await ot.initialize();
 
   const app = express();

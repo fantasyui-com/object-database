@@ -3,8 +3,7 @@
 {"type":"make","path":"users/alice/desktop"}
 {"type":"make","path":"users/alice/workspace/photoshop"}
 {"type":"make","path":"users/alice/workspace/gimp/plugins"}
-{"method":"dump","path":"/"}
-{"action":"dump","path":"users"}
-{"action":"dump","path":"users"}
 {"type":"dump","path":"users"}
-{"method":"noop","type":"dump","path":"etc"}
+{"type":"dump","path":"users"}
+{"type":"dump","path":"users"}
+{"type":"dump","path":""}

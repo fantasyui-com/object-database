@@ -44,6 +44,8 @@ Contents of the log file look as follows:
 
 You are encouraged to save and load snapshots, when the log file becomes too large:
 
+note: this requires logStrategy set to tail, otherwise use HTTP: { logFile:'object-tree-database.json', logStrategy:'tail' };
+
 ```sh
 
   echo '{"type":"snapshot", "file":"object-tree-snapshot-346.json"}' >> object-tree-database.json;
@@ -96,6 +98,8 @@ curl '127.1:3001?type=dump&path=users'
 ```
 
 ### Appending to the log file
+
+note: this requires: { logFile:'object-tree-database.json', logStrategy:'tail' };
 
 ```sh
 
