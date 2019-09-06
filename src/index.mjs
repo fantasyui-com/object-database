@@ -27,9 +27,12 @@ export default class ObjectDatabase {
 
   async initialize(){
 
+    if(this.tailLog)
     this.tail = new tail.Tail(this.#logFile,{fromBeginning:true});
     this.tail.on('line', line => this.line(line));
-
+    }else{
+    // todo use es here
+    }
   }
 
   // All actions are first saved to the log.
