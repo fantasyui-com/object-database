@@ -14,7 +14,7 @@ This is an in-memory database, even though it tails the log, and creates snapsho
 The file-system and database is like :dog: and :cat:. They cooperate but they are not in any harmony,
 there are no guarantees that you are safe from data loss on any database.
 
-Indeed the best way to save data is to ship it to
+Indeed, the best way to save data is to ship it to
 multiple remote servers where that data will be kept in memory long enough to be safely stored, even then
 you will have disk failures, memory errors and flipped bits from distant dying suns.
 
@@ -72,7 +72,7 @@ Here are four ways to manipulate the data:
 
 ```JavaScript
 
-import ObjectTree from './index.mjs';
+import ObjectTree from 'object-tree-database';
 const ot = new ObjectTree();
 await ot.initialize();
 const result = await ot.dispatch({type:'dump', path:'users'});
@@ -109,7 +109,7 @@ First create a stable tree structure.
 
 ```JavaScript
 
-import ObjectTree from './index.mjs';
+import ObjectTree from 'object-tree-database';
 const ot = new ObjectTree();
 await ot.initialize();
 
@@ -185,3 +185,9 @@ List of debug operations via curl
 dump database
 
       curl '127.1:3001?type=dump&path=/'
+
+
+## Todo
+
+content function
+snapshot/restore methods
