@@ -5,7 +5,10 @@ import express from 'express';
 
 async function main(){
 
-  const ot = new ObjectTree({logFile:'object-tree-database.json'});
+  const ot = new ObjectTree({
+    logStrategy:'tail',
+    logFile:'object-tree-database.json'
+  });
   await ot.initialize();
 
   const app = express();
