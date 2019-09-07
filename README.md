@@ -10,7 +10,7 @@ As of 7.2.2 the system supports flexible ndjson/ldjson log processing and integr
 - [SplitStrategy](src/node_modules/SplitStrategy/index.mjs) - process via [split](https://www.npmjs.com/package/split)
 
 Experimental (communication via log file, generates no server response.)
-- [TailStrategy](src/node_modules/TailStrategy/index.mjs) - process log with tail, and follow log. Please conduct your own test and review [tail](https://- www.npmjs.com/package/tail) source.
+- [TailStrategy](src/node_modules/TailStrategy/index.mjs) - process log with tail, and follow log. Please conduct your own test and review [tail](https://www.npmjs.com/package/tail) source.
 ## External API
 
 At the end of the day, when you are exhausted and your database horks your data,
