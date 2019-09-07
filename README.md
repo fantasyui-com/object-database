@@ -113,7 +113,7 @@ curl '127.1:3001?type=dump&path=users'
 
 ### Appending to the log file
 
-note: this requires: { file:'object-tree-database.json', logStrategy:'tail' };
+note: this requires: { file:'object-tree-database.json', strategy:'tail' };
 
 ```sh
 
