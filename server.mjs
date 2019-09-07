@@ -6,8 +6,6 @@ import express from 'express';
 async function main(){
 
   const ot = new ObjectTree({
-    // strategy:'tail',
-    // strategy:'eventstream',
     strategy:'split',
     log:'object-tree-database.json'
   });
@@ -27,7 +25,7 @@ async function main(){
 
   });
 
-  app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+  app.listen(port, () => console.log(`Server listening on port ${port}!`))
 
 }
 

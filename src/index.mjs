@@ -25,14 +25,14 @@ export default class ObjectDatabase {
   #processor = null; // class with initialize and dispatch
 
   constructor(options){
-    console.log(options)
-    const defaults = { log:'object-tree-database.json', strategy:'readline' };
+    //console.log(options)
+    const defaults = { log:'object-tree-database.json', strategy:'eventstream' };
     const setup = Object.assign({}, defaults, options );
     this.#log = setup.log;
     this.#strategy = setup.strategy;
     this.root = new Node({id:'root', name:'root'});
 
-    console.log(`this.#strategy: ${this.#strategy}.`)
+    //console.log(`this.#strategy: ${this.#strategy}.`)
   }
 
   async initialize(){
@@ -69,12 +69,14 @@ export default class ObjectDatabase {
 
   async dispatch(action){
     // process new actions (the processor will save them)
-    await this.#processor.dispatch(action);
+    return await this.#processor.dispatch(action);
   }
 
   // note: line can be a JSON string, or an object
   async line(data){
     if(!data) return;
+
+    let response = {};
 
     let lineObject;
 
@@ -93,11 +95,13 @@ export default class ObjectDatabase {
     try{
       const {type:action, ...parameters} = lineObject;
       if(this[action]){
-        await this[action](parameters);
+        response = await this[action](parameters);
       }
     }catch(error){
       console.error(error);
     }
+
+    return response;
 
   } // line
 
