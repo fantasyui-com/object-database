@@ -1,6 +1,15 @@
 # object-tree-database
 Object Tree Database
 
+## Input Log
+
+As of 7.2.2 the system supports flexible ndjson/ldjson log processing and integration strategies.
+
+- [ReadlineStrategy](src/node_modules/ReadlineStrategy/index.mjs) - process log with [readline](https://nodejs.org/api/readline.html#readline_example_read_file_stream_line_by_line)
+- [TailStrategy](src/node_modules/TailStrategy/index.mjs) - process log with tail, and follow log. Please conduct your own test and review [tail](https://- www.npmjs.com/package/tail) source.
+- [EventStreamStrategy](src/node_modules/EventStreamStrategy/index.mjs) - process via [event-stream](https://www.npmjs.com/package/event-stream)
+- [SplitStrategy](src/node_modules/SplitStrategy/index.mjs) - process via [split](https://www.npmjs.com/package/split)
+
 ## External API
 
 At the end of the day, when you are exhausted and your database horks your data,

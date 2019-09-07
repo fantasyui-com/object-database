@@ -6,8 +6,10 @@ import express from 'express';
 async function main(){
 
   const ot = new ObjectTree({
-    logStrategy:'tail',
-    logFile:'object-tree-database.json'
+    // strategy:'tail',
+    // strategy:'eventstream',
+    strategy:'split',
+    log:'object-tree-database.json'
   });
   await ot.initialize();
 

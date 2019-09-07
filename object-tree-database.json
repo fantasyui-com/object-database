@@ -3,6 +3,6 @@
 {"type":"make","path":"users/alice/desktop"}
 {"type":"make","path":"users/alice/workspace/photoshop"}
 {"type":"make","path":"users/alice/workspace/gimp/plugins"}
-{"type":"dump","path":"users"}
-{"type":"dump","path":"users"}
-{"type":"dump","path":"users"}
+{"type":"dump","path":"etc"}
+{"method":"noop","type":"dump","path":""}
+{"method":"noop","type":"dump","path":""}
