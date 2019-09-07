@@ -1,6 +1,10 @@
 # object-tree-database
 Object Tree Database
 
+## Datasheet
+
+Single process, this database does not support multiple instances (processes, cores, threads, fibers, etc.), by design everything must pass through the HTTP bottleneck to ensure proper sequence of events.
+
 ## Input Log
 
 As of 7.2.2 the system supports flexible ndjson/ldjson log processing and integration strategies.
